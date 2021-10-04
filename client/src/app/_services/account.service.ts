@@ -41,7 +41,10 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
-    this.currentUserSource.next(user);
+    if (user.username == null || user.token == null) {
+      this.currentUserSource.next();
+    }
+    else this.currentUserSource.next(user);
   }
 
 
